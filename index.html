@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Music Supervision Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&family=Jost:wght@200;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #2b1f14;
+    --bone: #1e1208;
+    --warm-white: #fdf6ed;
+    --gold: #c06c2a;
+    --gold-dim: #a0571e;
+    --rust: #b5461e;
+    --slate: #e8ddd0;
+    --mid: #6b5a4a;
+    --light: #9c8878;
+    --card-w: 260px;
+
+    /* Airy earth palette */
+    --bg:        #fdf6ed;   /* warm linen */
+    --bg2:       #f5ece0;   /* slightly deeper cream */
+    --text:      #2b1f14;   /* deep espresso */
+    --text-soft: #6b5a4a;   /* warm mid-brown */
+    --text-dim:  #9c8878;   /* dusty rose-brown */
+    --accent:    #c06c2a;   /* terracotta orange */
+    --accent2:   #7a9e7e;   /* sage green */
+    --accent3:   #d4a853;   /* ochre yellow */
+    --border:    rgba(43,31,20,0.12);
+    --border-ac: rgba(192,108,42,0.35);
+    --card-bg:   #fffaf4;
+    --card-w: 260px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.18;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 64px 48px 40px;
+    border-bottom: 1px solid var(--border-ac);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    background: var(--bg);
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .wordmark-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .wordmark-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .wordmark-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    text-align: right;
+    line-height: 2;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV STRIPE ── */
+  nav {
+    display: flex;
+    gap: 40px;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    background: var(--bg2);
+  }
+
+  nav a {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 80px 48px 60px;
+    max-width: 760px;
+  }
+
+  .intro p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    line-height: 1.65;
+    font-weight: 300;
+    color: var(--text-soft);
+  }
+
+  .intro p em { color: var(--accent); font-style: italic; }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 48px;
+    margin-bottom: 48px;
+  }
+
+  .section-label span {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-ac);
+  }
+
+  /* ── PROJECTS GRID ── */
+  #projects {
+    padding: 80px 48px;
+    background: var(--bg);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-w), 1fr));
+    gap: 40px 32px;
+  }
+
+  /* ── PROJECT CARD — mirrors the Infinity's Song bandmate card layout ── */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .poster-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--slate);
+    border: 1px solid var(--border-ac);
+  }
+
+  .poster-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    filter: grayscale(10%);
+  }
+
+  .project-card:hover .poster-wrap img {
+    transform: scale(1.04);
+  }
+
+  /* Placeholder for when user hasn't added image yet */
+  .poster-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(160deg, #ede4d8 0%, #e4d8c8 100%);
+    border: 2px dashed rgba(192,108,42,0.25);
+  }
+
+  .poster-placeholder span {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(192,108,42,0.5);
+    text-transform: uppercase;
+  }
+
+  .poster-placeholder .plus {
+    font-size: 32px;
+    color: rgba(192,108,42,0.3);
+    line-height: 1;
+  }
+
+  /* Hover overlay with play button */
+  .poster-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(43,31,20,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover .poster-overlay { opacity: 1; }
+
+  .play-btn {
+    width: 56px;
+    height: 56px;
+    border: 1.5px solid #fdf6ed;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(253,246,237,0.15);
+    transition: background 0.2s;
+  }
+
+  .play-btn:hover { background: rgba(253,246,237,0.3); }
+
+  .play-btn svg { margin-left: 3px; }
+
+  .overlay-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #fdf6ed;
+  }
+
+  /* Role tag on poster */
+  .role-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--accent);
+    color: #fdf6ed;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+  }
+
+  /* Card body below poster — mirrors "Abraham / Victory / Angel" layout */
+  .card-body {
+    padding: 18px 4px 0;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .card-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    font-weight: 200;
+  }
+
+  /* Icon row — mirrors the social icons under each bandmate */
+  .card-icons {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .icon-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── VIDEO MODAL ── */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(43,31,20,0.75);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-backdrop.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal-box {
+    background: var(--bg);
+    border: 1px solid var(--border-ac);
+    width: 100%;
+    max-width: 840px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+
+  .modal-backdrop.open .modal-box { transform: translateY(0); }
+
+  .modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg2);
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .modal-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+
+  .modal-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .modal-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .modal-video-placeholder {
+    aspect-ratio: 16/9;
+    background: var(--bg2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+  }
+
+  .modal-notes {
+    padding: 20px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.7;
+    font-weight: 200;
+  }
+
+  /* ── SPOTIFY SECTION ── */
+  #playlists {
+    padding: 80px 48px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .playlists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  .playlist-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .playlist-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  .playlist-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .spotify-embed {
+    border-radius: 0;
+    border: 1px solid var(--border-ac);
+    overflow: hidden;
+  }
+
+  .spotify-embed iframe {
+    width: 100%;
+    display: block;
+  }
+
+  /* Spotify placeholder */
+  .spotify-placeholder {
+    background: var(--bg);
+    border: 2px dashed rgba(192,108,42,0.2);
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .spotify-placeholder .sp-icon {
+    font-size: 28px;
+    opacity: 0.4;
+  }
+
+  .spotify-placeholder p {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  .spotify-placeholder input {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .spotify-placeholder input:focus { border-color: var(--accent); }
+
+  .spotify-placeholder button {
+    background: var(--accent);
+    color: #fdf6ed;
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .spotify-placeholder button:hover { opacity: 0.8; }
+
+  /* ── AMBIENT AUDIO BANNER ── */
+  .audio-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(253,246,237,0.96);
+    border-top: 1px solid var(--border-ac);
+    padding: 12px 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 400;
+    backdrop-filter: blur(8px);
+  }
+
+  .audio-banner-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .audio-play-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(192,108,42,0.4);
+    background: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent);
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .audio-play-btn:hover { background: rgba(192,108,42,0.1); }
+
+  .audio-track-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: var(--text-soft);
+    font-weight: 200;
+  }
+
+  .audio-visualizer {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 20px;
+  }
+
+  .audio-bar {
+    width: 2px;
+    background: var(--accent);
+    opacity: 0.5;
+    border-radius: 1px;
+    animation: barPulse 1.2s ease-in-out infinite;
+  }
+
+  .audio-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+  .audio-bar:nth-child(2) { height: 14px; animation-delay: 0.1s; }
+  .audio-bar:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+  .audio-bar:nth-child(4) { height: 18px; animation-delay: 0.3s; }
+  .audio-bar:nth-child(5) { height: 8px; animation-delay: 0.4s; }
+  .audio-bar:nth-child(6) { height: 14px; animation-delay: 0.15s; }
+
+  .audio-visualizer.paused .audio-bar { animation-play-state: paused; }
+
+  @keyframes barPulse {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+  }
+
+  .audio-mute-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    margin-left: auto;
+  }
+
+  .audio-mute-btn:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 60px 48px 100px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+    background: var(--bg2);
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    line-height: 2;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .fade-in-1 { animation-delay: 0.1s; }
+  .fade-in-2 { animation-delay: 0.2s; }
+  .fade-in-3 { animation-delay: 0.35s; }
+  .fade-in-4 { animation-delay: 0.5s; }
+
+  /* ══════════════════════════════════════
+     ABOUT SECTION
+  ══════════════════════════════════════ */
+  #about {
+    padding: 80px 48px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 64px;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  /* Left column: photo + quick stats */
+  .about-photo-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .about-photo-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: linear-gradient(160deg, #ede4d8 0%, #e4d8c8 100%);
+    border: 1px solid var(--border-ac);
+    position: relative;
+  }
+
+  .about-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(8%);
+  }
+
+  .about-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .about-photo-placeholder span {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: rgba(192,108,42,0.4);
+    text-transform: uppercase;
+  }
+
+  .about-photo-placeholder .plus {
+    font-size: 28px;
+    color: rgba(192,108,42,0.25);
+  }
+
+  /* Stat pills under photo */
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  /* Right column: bio text */
+  .about-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 8px;
+  }
+
+  .about-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  .about-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text);
+  }
+
+  .about-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .about-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-soft);
+    font-weight: 200;
+    max-width: 560px;
+  }
+
+  .about-body p + p { margin-top: 16px; }
+
+  /* Disciplines tags */
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .about-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--border-ac);
+    color: var(--accent);
+    background: rgba(192,108,42,0.05);
+  }
+
+  /* ══════════════════════════════════════
+     CONTACT SECTION
+  ══════════════════════════════════════ */
+  #contact {
+    padding: 80px 48px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+    max-width: 1000px;
+  }
+
+  .contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 4px;
+  }
+
+  .contact-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text);
+  }
+
+  .contact-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .contact-blurb {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-soft);
+    font-weight: 200;
+    max-width: 340px;
+  }
+
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .contact-detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .contact-detail-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .contact-detail-value {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 200;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+    background: #fff;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%239c8878' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .form-submit {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .submit-btn {
+    background: var(--accent);
+    color: #fdf6ed;
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+
+  .submit-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* Success state */
+  .form-success {
+    display: none;
+    padding: 32px 24px;
+    background: rgba(122,158,126,0.08);
+    border: 1px solid rgba(122,158,126,0.3);
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .form-success.visible { display: flex; }
+
+  .form-success-icon {
+    font-size: 28px;
+  }
+
+  .form-success p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text);
+  }
+
+  .form-success span {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  /* ══════════════════════════════════════
+     MOBILE RESPONSIVE — FULL POLISH
+  ══════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .about-photo-wrap {
+      aspect-ratio: 4 / 3;
+      max-height: 360px;
+    }
+
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    /* Global padding */
+    header,
+    nav,
+    #projects,
+    #production,
+    #tech,
+    #design,
+    #events,
+    #playlists,
+    #about,
+    #contact,
+    footer {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .section-label { padding: 0 20px; }
+    .intro { padding: 40px 20px; }
+    .audio-banner { padding: 10px 20px; gap: 10px; }
+
+    /* Header: stack vertically */
+    header {
+      padding-top: 40px;
+      padding-bottom: 28px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .header-role { text-align: left; }
+
+    /* Nav: scrollable, smaller gaps */
+    nav { gap: 24px; padding-top: 14px; padding-bottom: 14px; }
+
+    /* Project cards: single column on very small screens */
+    :root { --card-w: 100%; }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    /* Poster slightly shorter on mobile */
+    .poster-wrap { aspect-ratio: 2 / 3; }
+
+    /* About */
+    .about-photo-wrap { aspect-ratio: 3 / 2; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .stat-row {
+      flex-direction: column;
+      gap: 2px;
+      padding: 10px 0;
+    }
+
+    /* Contact form: single column */
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    /* Audio banner: compact */
+    .audio-banner-label { display: none; }
+
+    .audio-track-name { font-size: 10px; }
+
+    /* Modal: full screen feel */
+    .modal-backdrop { padding: 0; align-items: flex-end; }
+
+    .modal-box {
+      max-width: 100%;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    /* Playlists: single column */
+    .playlists-grid { grid-template-columns: 1fr; }
+
+    /* Footer: stack */
+    footer {
+      flex-direction: column;
+      gap: 20px;
+      padding-bottom: 100px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .wordmark-name { font-size: 36px; }
+    .about-headline { font-size: 28px; }
+    .contact-headline { font-size: 28px; }
+    .submit-btn { width: 100%; text-align: center; }
+    .form-submit { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ══════════════════════════════════════
+     SECTION COLOR ACCENTS
+     Each discipline gets a distinct tint
+     on its role-tag and section-label
+  ══════════════════════════════════════ */
+
+  /* Music Supervision — terracotta (default --accent) */
+  /* Production Credits — ochre */
+  .tag-production  { background: var(--accent3); color: #2b1f14; }
+  /* Tech — slate blue-green */
+  .tag-tech        { background: #5b8c85; color: #fdf6ed; }
+  /* Design — dusty rose */
+  .tag-design      { background: #b07a7a; color: #fdf6ed; }
+  /* Events — sage green */
+  .tag-events      { background: var(--accent2); color: #fdf6ed; }
+
+  /* Section label color overrides per discipline */
+  .label-production .section-label span { color: var(--accent3); }
+  .label-production .section-label::after { background: rgba(212,168,83,0.35); }
+
+  .label-tech .section-label span { color: #5b8c85; }
+  .label-tech .section-label::after { background: rgba(91,140,133,0.3); }
+
+  .label-design .section-label span { color: #b07a7a; }
+  .label-design .section-label::after { background: rgba(176,122,122,0.3); }
+
+  .label-events .section-label span { color: var(--accent2); }
+  .label-events .section-label::after { background: rgba(122,158,126,0.3); }
+
+  /* Section bg alternation */
+  .section-alt   { background: var(--bg2); }
+  .section-plain { background: var(--bg); }
+
+  /* ══════════════════════════════════════
+     CARD OVERLAY ICON — generic (eye)
+     for non-video cards (design, tech)
+  ══════════════════════════════════════ */
+  .eye-btn {
+    width: 56px;
+    height: 56px;
+    border: 1.5px solid #fdf6ed;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(253,246,237,0.15);
+    transition: background 0.2s;
+  }
+  .eye-btn:hover { background: rgba(253,246,237,0.3); }
+
+  /* ══════════════════════════════════════
+     SECTION DIVIDER BAND
+     Full-width tinted band between
+     major discipline groups
+  ══════════════════════════════════════ */
+  .section-divider {
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-divider-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(43,31,20,0.07);
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .section-divider-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .section-divider-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+  }
+
+  .section-divider-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 36px);
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .section-divider-title em {
+    font-style: italic;
+  }
+
+  /* Color variants */
+  .divider-production { background: rgba(212,168,83,0.06); border-color: rgba(212,168,83,0.2); }
+  .divider-production .section-divider-label { color: var(--accent3); }
+  .divider-production .section-divider-title em { color: var(--accent3); }
+
+  .divider-tech { background: rgba(91,140,133,0.06); border-color: rgba(91,140,133,0.2); }
+  .divider-tech .section-divider-label { color: #5b8c85; }
+  .divider-tech .section-divider-title em { color: #5b8c85; }
+
+  .divider-design { background: rgba(176,122,122,0.06); border-color: rgba(176,122,122,0.2); }
+  .divider-design .section-divider-label { color: #b07a7a; }
+  .divider-design .section-divider-title em { color: #b07a7a; }
+
+  .divider-events { background: rgba(122,158,126,0.06); border-color: rgba(122,158,126,0.2); }
+  .divider-events .section-divider-label { color: var(--accent2); }
+  .divider-events .section-divider-title em { color: var(--accent2); }
+
+  /* ══════════════════════════════════════
+     MOBILE — new sections
+  ══════════════════════════════════════ */
+  @media (max-width: 640px) {
+    #production, #tech, #design, #events {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .section-divider {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .section-divider-num { font-size: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="fade-in">
+  <div class="wordmark">
+    <div class="wordmark-sub">Creative Portfolio &amp; Music Supervision</div>
+    <div class="wordmark-name">Your <em>Name</em></div>
+  </div>
+  <div class="header-role">
+    Producer · Music Supervisor<br>
+    Event Production · Creative<br>
+    Graphic Design · Actor
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav class="fade-in fade-in-1">
+  <a href="#about">About</a>
+  <a href="#projects">Music Supervision</a>
+  <a href="#production">Production</a>
+  <a href="#tech">Tech</a>
+  <a href="#design">Design</a>
+  <a href="#events">Events</a>
+  <a href="#playlists">Playlists</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- ── INTRO ── -->
+<div class="intro fade-in fade-in-2">
+  <p>
+    Every discipline lives here — from the <em>sync</em> to the stage, the screen to the code, the brand to the beat.
+    All of it intentional. All of it built.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MUSIC SUPERVISION
+════════════════════════════════════════════ -->
+<div class="section-divider" style="background: rgba(192,108,42,0.04); border-color: rgba(192,108,42,0.15);">
+  <div class="section-divider-num">01</div>
+  <div class="section-divider-text">
+    <div class="section-divider-label" style="color: var(--accent);">Music Supervision</div>
+    <div class="section-divider-title">Sync, Placement <em>&amp; Sound</em></div>
+  </div>
+</div>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="section-label fade-in fade-in-3">
+    <span>Selected Projects</span>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card fade-in fade-in-1">
+      <div class="poster-wrap" onclick="openModal('modal-1')">
+        <!-- REPLACE src below with your actual image path -->
+        <!-- <img src="your-poster-1.jpg" alt="Project 1 Poster" /> -->
+        <div class="poster-placeholder">
+          <div class="plus">+</div>
+          <span>Add Poster Image</span>
+        </div>
+        <div class="role-tag">Film</div>
+        <div class="poster-overlay">
+          <div class="play-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 2L14 8L4 14V2Z" fill="#c9a84c"/>
+            </svg>
+          </div>
+          <div class="overlay-label">Watch Ref</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title One</div>
+        <div class="card-meta">2024 · Director's Name</div>
+        <div class="card-desc">Brief description of the project — the mood, the sync, the placement, the story behind the cue. Make it feel earned.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('modal-1')">▶ Video Ref</button>
+          <button class="icon-btn">↗ IMDb</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card fade-in fade-in-2">
+      <div class="poster-wrap" onclick="openModal('modal-2')">
+        <div class="poster-placeholder">
+          <div class="plus">+</div>
+          <span>Add Poster Image</span>
+        </div>
+        <div class="role-tag">TV / Streaming</div>
+        <div class="poster-overlay">
+          <div class="play-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 2L14 8L4 14V2Z" fill="#c9a84c"/>
+            </svg>
+          </div>
+          <div class="overlay-label">Watch Ref</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title Two</div>
+        <div class="card-meta">2023 · Showrunner Name</div>
+        <div class="card-desc">The emotional arc of the scene this track landed in. Why this song. What it unlocked in the edit room.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('modal-2')">▶ Video Ref</button>
+          <button class="icon-btn">↗ Network</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card fade-in fade-in-3">
+      <div class="poster-wrap" onclick="openModal('modal-3')">
+        <div class="poster-placeholder">
+          <div class="plus">+</div>
+          <span>Add Poster Image</span>
+        </div>
+        <div class="role-tag">Ad / Brand</div>
+        <div class="poster-overlay">
+          <div class="play-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 2L14 8L4 14V2Z" fill="#c9a84c"/>
+            </svg>
+          </div>
+          <div class="overlay-label">Watch Ref</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title Three</div>
+        <div class="card-meta">2023 · Brand / Agency</div>
+        <div class="card-desc">Commercial sync or branded campaign context. The brief. The sonic identity. What you brought to it.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('modal-3')">▶ Video Ref</button>
+          <button class="icon-btn">↗ Campaign</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card fade-in fade-in-4">
+      <div class="poster-wrap" onclick="openModal('modal-4')">
+        <div class="poster-placeholder">
+          <div class="plus">+</div>
+          <span>Add Poster Image</span>
+        </div>
+        <div class="role-tag">Live / Event</div>
+        <div class="poster-overlay">
+          <div class="play-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 2L14 8L4 14V2Z" fill="#c9a84c"/>
+            </svg>
+          </div>
+          <div class="overlay-label">Watch Ref</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title Four</div>
+        <div class="card-meta">2022 · Venue / Event Name</div>
+        <div class="card-desc">Event production context — the curatorial vision, the room, the playlist architecture. How the music shaped the experience.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('modal-4')">▶ Video Ref</button>
+          <button class="icon-btn">↗ Archive</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /projects-grid -->
+</section>
+
+<!-- ── SPOTIFY / PLAYLISTS ── -->
+<section id="playlists">
+  <div class="section-label">
+    <span>Playlists</span>
+  </div>
+
+  <div class="playlists-grid">
+
+    <!-- Playlist 1: paste a Spotify embed iframe OR use the input tool below -->
+    <div class="playlist-block">
+      <div class="playlist-label">Reference Reel</div>
+      <div class="playlist-title">Mood Board Vol. I</div>
+
+      <!-- Option A: paste your iframe embed from Spotify here and delete the placeholder div -->
+      <!-- 
+      <div class="spotify-embed">
+        <iframe src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID" 
+          height="352" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      -->
+
+      <!-- Option B: paste-in tool -->
+      <div class="spotify-placeholder" id="sp-placeholder-1">
+        <div class="sp-icon">🎵</div>
+        <p>Paste a Spotify playlist URL<br>to embed it here</p>
+        <input type="text" id="sp-url-1" placeholder="https://open.spotify.com/playlist/..." />
+        <button onclick="embedSpotify('sp-url-1','sp-embed-1','sp-placeholder-1')">Embed Playlist</button>
+      </div>
+      <div id="sp-embed-1" class="spotify-embed" style="display:none;"></div>
+    </div>
+
+    <!-- Playlist 2 -->
+    <div class="playlist-block">
+      <div class="playlist-label">Curatorial Work</div>
+      <div class="playlist-title">Sync Selections</div>
+      <div class="spotify-placeholder" id="sp-placeholder-2">
+        <div class="sp-icon">🎵</div>
+        <p>Paste a Spotify playlist URL<br>to embed it here</p>
+        <input type="text" id="sp-url-2" placeholder="https://open.spotify.com/playlist/..." />
+        <button onclick="embedSpotify('sp-url-2','sp-embed-2','sp-placeholder-2')">Embed Playlist</button>
+      </div>
+      <div id="sp-embed-2" class="spotify-embed" style="display:none;"></div>
+    </div>
+
+    <!-- Playlist 3 -->
+    <div class="playlist-block">
+      <div class="playlist-label">Event Sound</div>
+      <div class="playlist-title">Room Tone</div>
+      <div class="spotify-placeholder" id="sp-placeholder-3">
+        <div class="sp-icon">🎵</div>
+        <p>Paste a Spotify playlist URL<br>to embed it here</p>
+        <input type="text" id="sp-url-3" placeholder="https://open.spotify.com/playlist/..." />
+        <button onclick="embedSpotify('sp-url-3','sp-embed-3','sp-placeholder-3')">Embed Playlist</button>
+      </div>
+      <div id="sp-embed-3" class="spotify-embed" style="display:none;"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCTION CREDITS
+════════════════════════════════════════════ -->
+<div class="section-divider divider-production">
+  <div class="section-divider-num">02</div>
+  <div class="section-divider-text">
+    <div class="section-divider-label">Production Credits</div>
+    <div class="section-divider-title">Film, Television <em>&amp; Music</em></div>
+  </div>
+</div>
+
+<section id="production" class="section-alt label-production" style="padding: 80px 48px;">
+  <div class="section-label"><span>Production Credits</span></div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in fade-in-1">
+      <div class="poster-wrap" onclick="openModal('prod-modal-1')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Poster / Still</span></div>
+        <div class="role-tag tag-production">Executive Producer</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Watch Clip</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title</div>
+        <div class="card-meta">2024 · Feature Film</div>
+        <div class="card-desc">Your role and contribution. What you brought to the project — creative, logistical, or both.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('prod-modal-1')">▶ Clip</button>
+          <button class="icon-btn">↗ IMDb</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-2">
+      <div class="poster-wrap" onclick="openModal('prod-modal-2')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Poster / Still</span></div>
+        <div class="role-tag tag-production">Producer</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Watch Clip</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title</div>
+        <div class="card-meta">2023 · TV / Streaming</div>
+        <div class="card-desc">Network, platform, or distribution context. Your producing credit and what the project meant.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('prod-modal-2')">▶ Clip</button>
+          <button class="icon-btn">↗ Network</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-3">
+      <div class="poster-wrap" onclick="openModal('prod-modal-3')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Poster / Still</span></div>
+        <div class="role-tag tag-production">Music Producer</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Listen</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title</div>
+        <div class="card-meta">2023 · Album / EP</div>
+        <div class="card-desc">Artist, label, sonic direction. What you built in the studio and why it landed.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('prod-modal-3')">▶ Listen</button>
+          <button class="icon-btn">↗ Spotify</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-4">
+      <div class="poster-wrap" onclick="openModal('prod-modal-4')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Poster / Still</span></div>
+        <div class="role-tag tag-production">Co-Producer</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Watch Clip</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Title</div>
+        <div class="card-meta">2022 · Short Film / Doc</div>
+        <div class="card-desc">Festival run, distribution, and your specific producing contribution to this project.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('prod-modal-4')">▶ Clip</button>
+          <button class="icon-btn">↗ Festival</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="modal-backdrop" id="prod-modal-1"><div class="modal-box"><div class="modal-header"><div class="modal-title">Production Credit — Clip</div><button class="modal-close" onclick="closeModal('prod-modal-1')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste YouTube / Vimeo embed URL</span></div><div class="modal-notes">Production notes, role details, collaborators.</div></div></div>
+<div class="modal-backdrop" id="prod-modal-2"><div class="modal-box"><div class="modal-header"><div class="modal-title">Production Credit — Clip</div><button class="modal-close" onclick="closeModal('prod-modal-2')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste YouTube / Vimeo embed URL</span></div><div class="modal-notes">Production notes, role details, collaborators.</div></div></div>
+<div class="modal-backdrop" id="prod-modal-3"><div class="modal-box"><div class="modal-header"><div class="modal-title">Production Credit — Listen</div><button class="modal-close" onclick="closeModal('prod-modal-3')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste Spotify / SoundCloud embed or YouTube</span></div><div class="modal-notes">Album/EP notes, production credits, release context.</div></div></div>
+<div class="modal-backdrop" id="prod-modal-4"><div class="modal-box"><div class="modal-header"><div class="modal-title">Production Credit — Clip</div><button class="modal-close" onclick="closeModal('prod-modal-4')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste YouTube / Vimeo embed URL</span></div><div class="modal-notes">Production notes, role details, collaborators.</div></div></div>
+
+
+<!-- ═══════════════════════════════════════════
+     TECH PROJECTS
+════════════════════════════════════════════ -->
+<div class="section-divider divider-tech">
+  <div class="section-divider-num">03</div>
+  <div class="section-divider-text">
+    <div class="section-divider-label">Tech Projects</div>
+    <div class="section-divider-title">Apps, Tools <em>&amp; Builds</em></div>
+  </div>
+</div>
+
+<section id="tech" class="section-plain label-tech" style="padding: 80px 48px;">
+  <div class="section-label"><span>Tech Projects</span></div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in fade-in-1">
+      <div class="poster-wrap" onclick="openModal('tech-modal-1')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Screenshot / Mockup</span></div>
+        <div class="role-tag tag-tech">Web App</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Project</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Name</div>
+        <div class="card-meta">2024 · React · Node</div>
+        <div class="card-desc">What problem it solves, what you built, and what it unlocked for users or collaborators.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('tech-modal-1')">◉ Preview</button>
+          <button class="icon-btn">↗ GitHub</button>
+          <button class="icon-btn">↗ Live</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-2">
+      <div class="poster-wrap" onclick="openModal('tech-modal-2')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Screenshot / Mockup</span></div>
+        <div class="role-tag tag-tech">Tool / Script</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Project</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Name</div>
+        <div class="card-meta">2023 · Python · API</div>
+        <div class="card-desc">The tool's purpose, how it was built, and who it serves — artists, producers, or yourself.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('tech-modal-2')">◉ Preview</button>
+          <button class="icon-btn">↗ GitHub</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-3">
+      <div class="poster-wrap" onclick="openModal('tech-modal-3')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Screenshot / Mockup</span></div>
+        <div class="role-tag tag-tech">Platform</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Project</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Name</div>
+        <div class="card-meta">2022 · Full Stack</div>
+        <div class="card-desc">Platform vision, tech stack, and what makes it distinct from anything else in the space.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('tech-modal-3')">◉ Preview</button>
+          <button class="icon-btn">↗ Live Site</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-4">
+      <div class="poster-wrap" onclick="openModal('tech-modal-4')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Screenshot / Mockup</span></div>
+        <div class="role-tag tag-tech">Creative Tech</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Project</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project Name</div>
+        <div class="card-meta">2022 · Interactive</div>
+        <div class="card-desc">Where code meets art — an installation, a generative piece, or a creative workflow tool.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('tech-modal-4')">◉ Preview</button>
+          <button class="icon-btn">↗ Demo</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="modal-backdrop" id="tech-modal-1"><div class="modal-box"><div class="modal-header"><div class="modal-title">Tech Project — Preview</div><button class="modal-close" onclick="closeModal('tech-modal-1')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste demo video URL or embed</span></div><div class="modal-notes">Stack, process, GitHub or live site links.</div></div></div>
+<div class="modal-backdrop" id="tech-modal-2"><div class="modal-box"><div class="modal-header"><div class="modal-title">Tech Project — Preview</div><button class="modal-close" onclick="closeModal('tech-modal-2')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste demo video URL or embed</span></div><div class="modal-notes">Stack, process, GitHub or live site links.</div></div></div>
+<div class="modal-backdrop" id="tech-modal-3"><div class="modal-box"><div class="modal-header"><div class="modal-title">Tech Project — Preview</div><button class="modal-close" onclick="closeModal('tech-modal-3')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste demo video URL or embed</span></div><div class="modal-notes">Stack, process, GitHub or live site links.</div></div></div>
+<div class="modal-backdrop" id="tech-modal-4"><div class="modal-box"><div class="modal-header"><div class="modal-title">Tech Project — Preview</div><button class="modal-close" onclick="closeModal('tech-modal-4')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste demo video URL or embed</span></div><div class="modal-notes">Stack, process, GitHub or live site links.</div></div></div>
+
+
+<!-- ═══════════════════════════════════════════
+     GRAPHIC DESIGN
+════════════════════════════════════════════ -->
+<div class="section-divider divider-design">
+  <div class="section-divider-num">04</div>
+  <div class="section-divider-text">
+    <div class="section-divider-label">Graphic Design</div>
+    <div class="section-divider-title">Visual Identity <em>&amp; Art Direction</em></div>
+  </div>
+</div>
+
+<section id="design" class="section-alt label-design" style="padding: 80px 48px;">
+  <div class="section-label"><span>Graphic Design</span></div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in fade-in-1">
+      <div class="poster-wrap" onclick="openModal('design-modal-1')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Design Visual</span></div>
+        <div class="role-tag tag-design">Brand Identity</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Work</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Client / Project</div>
+        <div class="card-meta">2024 · Brand Identity</div>
+        <div class="card-desc">The brief, the visual direction you developed, and what the identity communicates.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('design-modal-1')">◉ View</button>
+          <button class="icon-btn">↗ Behance</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-2">
+      <div class="poster-wrap" onclick="openModal('design-modal-2')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Design Visual</span></div>
+        <div class="role-tag tag-design">Album Art</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Work</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Artist — Album Title</div>
+        <div class="card-meta">2023 · Album Art Direction</div>
+        <div class="card-desc">The sonic world you translated into visuals — typography, palette, imagery, and the story it tells.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('design-modal-2')">◉ View</button>
+          <button class="icon-btn">↗ Spotify</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-3">
+      <div class="poster-wrap" onclick="openModal('design-modal-3')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Design Visual</span></div>
+        <div class="role-tag tag-design">Poster / Print</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Work</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Campaign / Series</div>
+        <div class="card-meta">2023 · Print · Digital</div>
+        <div class="card-desc">Event posters, campaign materials, or editorial design — and the concept behind the execution.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('design-modal-3')">◉ View</button>
+          <button class="icon-btn">↗ Archive</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-4">
+      <div class="poster-wrap" onclick="openModal('design-modal-4')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Design Visual</span></div>
+        <div class="role-tag tag-design">Art Direction</div>
+        <div class="poster-overlay">
+          <div class="eye-btn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><ellipse cx="9" cy="6" rx="8" ry="5.5" stroke="#fdf6ed" stroke-width="1.5"/><circle cx="9" cy="6" r="2.5" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">View Work</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Project / Campaign</div>
+        <div class="card-meta">2022 · Art Direction</div>
+        <div class="card-desc">Visual identity, mood boards, photo direction — the aesthetic universe you built for this project.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('design-modal-4')">◉ View</button>
+          <button class="icon-btn">↗ Portfolio</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="modal-backdrop" id="design-modal-1"><div class="modal-box"><div class="modal-header"><div class="modal-title">Design Work — Full View</div><button class="modal-close" onclick="closeModal('design-modal-1')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste image embed or Behance frame</span></div><div class="modal-notes">Client, deliverables, tools, timeline.</div></div></div>
+<div class="modal-backdrop" id="design-modal-2"><div class="modal-box"><div class="modal-header"><div class="modal-title">Design Work — Full View</div><button class="modal-close" onclick="closeModal('design-modal-2')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste image embed or Behance frame</span></div><div class="modal-notes">Client, deliverables, tools, timeline.</div></div></div>
+<div class="modal-backdrop" id="design-modal-3"><div class="modal-box"><div class="modal-header"><div class="modal-title">Design Work — Full View</div><button class="modal-close" onclick="closeModal('design-modal-3')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste image embed or Behance frame</span></div><div class="modal-notes">Client, deliverables, tools, timeline.</div></div></div>
+<div class="modal-backdrop" id="design-modal-4"><div class="modal-box"><div class="modal-header"><div class="modal-title">Design Work — Full View</div><button class="modal-close" onclick="closeModal('design-modal-4')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste image embed or Behance frame</span></div><div class="modal-notes">Client, deliverables, tools, timeline.</div></div></div>
+
+
+<!-- ═══════════════════════════════════════════
+     EVENTS
+════════════════════════════════════════════ -->
+<div class="section-divider divider-events">
+  <div class="section-divider-num">05</div>
+  <div class="section-divider-text">
+    <div class="section-divider-label">Events</div>
+    <div class="section-divider-title">Parties, Activations <em>&amp; Shows</em></div>
+  </div>
+</div>
+
+<section id="events" class="section-plain label-events" style="padding: 80px 48px;">
+  <div class="section-label"><span>Events</span></div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in fade-in-1">
+      <div class="poster-wrap" onclick="openModal('event-modal-1')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Event Poster / Photo</span></div>
+        <div class="role-tag tag-events">Concert / Show</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Watch Recap</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Event Name</div>
+        <div class="card-meta">2024 · Venue · City</div>
+        <div class="card-desc">Scale, lineup, capacity, and the vision that held the whole night together. What the room felt like.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('event-modal-1')">▶ Recap</button>
+          <button class="icon-btn">↗ Archive</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-2">
+      <div class="poster-wrap" onclick="openModal('event-modal-2')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Event Poster / Photo</span></div>
+        <div class="role-tag tag-events">Brand Activation</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Watch Recap</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Event Name</div>
+        <div class="card-meta">2023 · Brand · Location</div>
+        <div class="card-desc">The client brief, the activation concept, and how music and environment came together.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('event-modal-2')">▶ Recap</button>
+          <button class="icon-btn">↗ Press</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-3">
+      <div class="poster-wrap" onclick="openModal('event-modal-3')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Event Poster / Photo</span></div>
+        <div class="role-tag tag-events">Recurring Series</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Watch Recap</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Series Name</div>
+        <div class="card-meta">2022–Present · Monthly</div>
+        <div class="card-desc">The recurring event you built from scratch — its community, its identity, and how it grew.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('event-modal-3')">▶ Recap</button>
+          <button class="icon-btn">↗ Instagram</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in fade-in-4">
+      <div class="poster-wrap" onclick="openModal('event-modal-4')">
+        <div class="poster-placeholder"><div class="plus">+</div><span>Add Event Poster / Photo</span></div>
+        <div class="role-tag tag-events">Immersive / Art</div>
+        <div class="poster-overlay">
+          <div class="play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2L14 8L4 14V2Z" fill="#fdf6ed"/></svg></div>
+          <div class="overlay-label">Watch Recap</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Experience Name</div>
+        <div class="card-meta">2022 · Immersive Event</div>
+        <div class="card-desc">An experiential or art-forward event — what the space looked like, felt like, sounded like.</div>
+        <div class="card-icons">
+          <button class="icon-btn" onclick="openModal('event-modal-4')">▶ Recap</button>
+          <button class="icon-btn">↗ Coverage</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="modal-backdrop" id="event-modal-1"><div class="modal-box"><div class="modal-header"><div class="modal-title">Event Recap</div><button class="modal-close" onclick="closeModal('event-modal-1')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste recap video URL (YouTube / Vimeo)</span></div><div class="modal-notes">Date, venue, capacity, lineup, press links.</div></div></div>
+<div class="modal-backdrop" id="event-modal-2"><div class="modal-box"><div class="modal-header"><div class="modal-title">Event Recap</div><button class="modal-close" onclick="closeModal('event-modal-2')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste recap video URL (YouTube / Vimeo)</span></div><div class="modal-notes">Date, venue, capacity, lineup, press links.</div></div></div>
+<div class="modal-backdrop" id="event-modal-3"><div class="modal-box"><div class="modal-header"><div class="modal-title">Event Recap</div><button class="modal-close" onclick="closeModal('event-modal-3')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste recap video URL (YouTube / Vimeo)</span></div><div class="modal-notes">Date, venue, capacity, lineup, press links.</div></div></div>
+<div class="modal-backdrop" id="event-modal-4"><div class="modal-box"><div class="modal-header"><div class="modal-title">Event Recap</div><button class="modal-close" onclick="closeModal('event-modal-4')">✕ Close</button></div><div class="modal-video-placeholder"><span>Paste recap video URL (YouTube / Vimeo)</span></div><div class="modal-notes">Date, venue, capacity, lineup, press links.</div></div></div>
+
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-label">
+    <span>About</span>
+  </div>
+
+  <div class="about-layout">
+
+    <!-- Left: photo + stats -->
+    <div class="about-photo-col">
+      <div class="about-photo-wrap">
+        <!-- Replace with: <img src="your-headshot.jpg" alt="Your Name" /> -->
+        <div class="about-photo-placeholder">
+          <div class="plus">+</div>
+          <span>Add Headshot</span>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat-row">
+          <span class="stat-label">Based In</span>
+          <span class="stat-value">New York, NY</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Available For</span>
+          <span class="stat-value">Film · TV · Brand · Events</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Represented</span>
+          <span class="stat-value">Independently</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Est.</span>
+          <span class="stat-value">Your Year</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: bio -->
+    <div class="about-text-col">
+      <div class="about-eyebrow">Music Supervisor · Producer · Creative Director</div>
+
+      <h2 class="about-headline">
+        Sound is the first thing<br>
+        an audience <em>feels</em>.
+      </h2>
+
+      <div class="about-body">
+        <p>
+          [Your name] is a New York-based music supervisor, producer, and creative director working at the intersection of sound, image, and lived experience. With a background spanning event production, graphic design, and performance, the work is always rooted in one question: <em>what does this moment need to say?</em>
+        </p>
+        <p>
+          Projects span independent film, network television, brand campaigns, and immersive live events — united by an instinct for the unexpected song in the right place. Collaborators include directors, showrunners, brand agencies, and artists who trust that music can carry what dialogue cannot.
+        </p>
+        <p>
+          When not in the edit suite, you'll find her in the room — producing experiences that make people feel something they didn't know they were carrying.
+        </p>
+      </div>
+
+      <div class="about-tags">
+        <span class="about-tag">Music Supervision</span>
+        <span class="about-tag">Sync Licensing</span>
+        <span class="about-tag">Event Production</span>
+        <span class="about-tag">Creative Direction</span>
+        <span class="about-tag">Artist Development</span>
+        <span class="about-tag">Graphic Design</span>
+        <span class="about-tag">Brand Sound</span>
+        <span class="about-tag">Film &amp; TV</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-label">
+    <span>Let's Work</span>
+  </div>
+
+  <div class="contact-layout">
+
+    <!-- Left: headline + details -->
+    <div class="contact-left">
+      <h2 class="contact-headline">
+        Tell me about<br>your <em>project</em>.
+      </h2>
+
+      <p class="contact-blurb">
+        Whether you're in pre-production, in the edit, or still forming the vision — reach out. The best placements start early.
+      </p>
+
+      <div class="contact-detail">
+        <div class="contact-detail-row">
+          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e17011b2e17011b1c0b030f0702400d0103">[email&#160;protected]</a></span>
+        </div>
+        <div class="contact-detail-row">
+          <span class="contact-detail-label">Based In</span>
+          <span class="contact-detail-value">New York, NY · Available Remotely</span>
+        </div>
+        <div class="contact-detail-row">
+          <span class="contact-detail-label">Response Time</span>
+          <span class="contact-detail-value">Within 48 hours</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div>
+      <form class="contact-form" id="contact-form" onsubmit="submitForm(event)">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Your Name</label>
+            <input type="text" id="cf-name" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" placeholder="you@studio.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-type">Project Type</label>
+          <select id="cf-type" required>
+            <option value="" disabled selected>Select one…</option>
+            <option>Feature Film</option>
+            <option>Short Film</option>
+            <option>Television / Streaming</option>
+            <option>Documentary</option>
+            <option>Brand / Commercial</option>
+            <option>Live Event</option>
+            <option>Music Video</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-budget">Budget Range</label>
+          <select id="cf-budget">
+            <option value="" disabled selected>Approximate range…</option>
+            <option>Under $5K</option>
+            <option>$5K – $15K</option>
+            <option>$15K – $50K</option>
+            <option>$50K – $100K</option>
+            <option>$100K+</option>
+            <option>Let's discuss</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-message">Tell Me More</label>
+          <textarea id="cf-message" placeholder="Project description, timeline, vibe, references — whatever you've got." required></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="submit-btn">Send It →</button>
+          <span class="submit-note">No spam. Ever.</span>
+        </div>
+
+      </form>
+
+      <!-- Success state -->
+      <div class="form-success" id="form-success">
+        <div class="form-success-icon">✦</div>
+        <p>Message received.</p>
+        <span>You'll hear back within 48 hours.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── VIDEO MODALS ── -->
+
+<!-- Modal 1 -->
+<div class="modal-backdrop" id="modal-1">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Project Title One — Video Reference</div>
+      <button class="modal-close" onclick="closeModal('modal-1')">✕ Close</button>
+    </div>
+    <!-- Replace with actual YouTube/Vimeo embed URL -->
+    <!-- <div class="modal-video"><iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe></div> -->
+    <div class="modal-video-placeholder">
+      <span>Paste your YouTube or Vimeo embed URL</span>
+      <span style="font-size:9px; color: rgba(201,168,76,0.5);">Replace comment above with iframe</span>
+    </div>
+    <div class="modal-notes">Add scene notes, track credits, or licensing context here.</div>
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal-backdrop" id="modal-2">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Project Title Two — Video Reference</div>
+      <button class="modal-close" onclick="closeModal('modal-2')">✕ Close</button>
+    </div>
+    <div class="modal-video-placeholder">
+      <span>Paste your YouTube or Vimeo embed URL</span>
+    </div>
+    <div class="modal-notes">Add scene notes, track credits, or licensing context here.</div>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal-backdrop" id="modal-3">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Project Title Three — Video Reference</div>
+      <button class="modal-close" onclick="closeModal('modal-3')">✕ Close</button>
+    </div>
+    <div class="modal-video-placeholder">
+      <span>Paste your YouTube or Vimeo embed URL</span>
+    </div>
+    <div class="modal-notes">Add scene notes, track credits, or licensing context here.</div>
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div class="modal-backdrop" id="modal-4">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Project Title Four — Video Reference</div>
+      <button class="modal-close" onclick="closeModal('modal-4')">✕ Close</button>
+    </div>
+    <div class="modal-video-placeholder">
+      <span>Paste your YouTube or Vimeo embed URL</span>
+    </div>
+    <div class="modal-notes">Add scene notes, track credits, or licensing context here.</div>
+  </div>
+</div>
+
+<!-- ── AMBIENT AUDIO PLAYER ── -->
+<!-- Uses a royalty-free track from Free Music Archive / ccmixter via direct URL -->
+<div class="audio-banner" id="audio-banner">
+  <div class="audio-banner-label">Now Playing</div>
+  <div class="audio-controls">
+    <button class="audio-play-btn" id="audio-toggle" onclick="toggleAudio()">
+      <svg id="audio-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2 1L11 6L2 11V1Z" fill="#c06c2a"/>
+      </svg>
+    </button>
+    <div class="audio-track-name" id="audio-track-name">Ambient intro</div>
+    <div class="audio-visualizer paused" id="audio-viz">
+      <div class="audio-bar"></div>
+      <div class="audio-bar"></div>
+      <div class="audio-bar"></div>
+      <div class="audio-bar"></div>
+      <div class="audio-bar"></div>
+      <div class="audio-bar"></div>
+    </div>
+  </div>
+  <button class="audio-mute-btn" onclick="dismissAudio()">Dismiss ✕</button>
+</div>
+
+<!-- Hidden audio element — royalty free ambient track (Bensound) -->
+<audio id="bg-audio" loop preload="none">
+  <!-- Royalty-free: "Tenderness" by Bensound (CC licensed, attribution required below) -->
+  <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-name">Your Name</div>
+  <div class="footer-copy">
+    Music Supervision Portfolio<br>
+    © 2025 — All Rights Reserved<br>
+    <span style="color: rgba(192,108,42,0.45); font-size:8px;">Ambient track: "Tenderness" — Bensound.com (CC)</span>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ── -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ── Modal ── */
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on backdrop click
+  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+    backdrop.addEventListener('click', function(e) {
+      if (e.target === this) closeModal(this.id);
+    });
+  });
+  // ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop.open').forEach(m => closeModal(m.id));
+    }
+  });
+
+  /* ── Spotify embed builder ── */
+  function embedSpotify(inputId, embedId, placeholderId) {
+    const raw = document.getElementById(inputId).value.trim();
+    // Extract playlist ID from URL
+    const match = raw.match(/playlist\/([A-Za-z0-9]+)/);
+    if (!match) {
+      alert('Paste a valid Spotify playlist URL — e.g. https://open.spotify.com/playlist/37i9dQZF...');
+      return;
+    }
+    const pid = match[1];
+    const embedEl = document.getElementById(embedId);
+    embedEl.innerHTML = `<iframe 
+      src="https://open.spotify.com/embed/playlist/${pid}?utm_source=generator&theme=0" 
+      height="352" frameborder="0" allowtransparency="true" 
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+      loading="lazy"></iframe>`;
+    embedEl.style.display = 'block';
+    document.getElementById(placeholderId).style.display = 'none';
+  }
+
+  /* ── Ambient audio player ── */
+  const audio = document.getElementById('bg-audio');
+  const viz = document.getElementById('audio-viz');
+  const trackName = document.getElementById('audio-track-name');
+  const iconEl = document.getElementById('audio-icon');
+  let playing = false;
+
+  // Auto-play attempt on first interaction
+  document.addEventListener('click', function startOnInteract() {
+    if (!playing) playAudio();
+    document.removeEventListener('click', startOnInteract);
+  }, { once: false });
+
+  function playAudio() {
+    audio.volume = 0.35;
+    audio.play().then(() => {
+      playing = true;
+      viz.classList.remove('paused');
+      trackName.textContent = 'Tenderness — Bensound';
+      iconEl.innerHTML = '<rect x="2" y="1" width="3" height="10" fill="#c9a84c"/><rect x="7" y="1" width="3" height="10" fill="#c9a84c"/>';
+    }).catch(() => {});
+  }
+
+  function toggleAudio() {
+    if (playing) {
+      audio.pause();
+      playing = false;
+      viz.classList.add('paused');
+      trackName.textContent = 'Paused';
+      iconEl.innerHTML = '<path d="M2 1L11 6L2 11V1Z" fill="#c9a84c"/>';
+    } else {
+      playAudio();
+    }
+  }
+
+  function dismissAudio() {
+    audio.pause();
+    document.getElementById('audio-banner').style.display = 'none';
+    document.querySelectorAll('footer').forEach(f => f.style.paddingBottom = '60px');
+  }
+
+  /* ── Contact form (client-side simulation) ── */
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    // Animate o
